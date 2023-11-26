@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\UnauthorizedException;
 use Illuminate\Http\Request;
-use App\Repository\Interface\NoteRepository;
+use App\Interactor\NoteInteractor;
 
 class NoteController extends Controller
 {
-    private $noteRepository;
+    private $noteInteractor;
 
-    public function __construct(NoteRepository $noteRepository)
+    public function __construct(NoteInteractor $noteInteractor)
     {
-        $this->noteRepository = $noteRepository;    
+        $this->noteInteractor = $noteInteractor;    
     }
 
     public function saveNote(Request $request) {
@@ -19,16 +20,17 @@ class NoteController extends Controller
             'name' => 'required',
             'note' => 'required'
         ]);
+
         $name = $request->input('name');
         $note = $request->input('note');
 
-        $this->noteRepository->createNote($name, $note);
+        $this->noteInteractor->createNote($name, $note);
 
         return view('pages.note', ['name' => $name, 'note' => $note]);
     }
 
     public function getNotes() {
-        $notes = $this->noteRepository->getAllNotes();
+        $notes = $this->noteInteractor->getAllNotes();
         return view('pages.notes', ['notes' => $notes]);
     }
 }

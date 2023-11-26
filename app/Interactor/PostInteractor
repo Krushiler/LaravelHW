@@ -1,0 +1,30 @@
+<?php
+
+namespace App\Interactor;
+
+use App\Repository\Interface\PostRepository;
+use Illuminate\Support\Facades\Auth;
+
+class PostInteractor {
+    private PostRepository $postRepository;
+
+    public function __construct(PostRepository $postRepository) {
+        $this->postRepository = $postRepository;
+    }
+
+    public function getAllPost() {
+        return $this->postRepository->getPosts(null);
+    }
+
+    public function getMyPosts() {
+        return $this->postRepository->getPosts(Auth::user()->id);
+    }
+
+    public function createPost(string $title, string $content) {
+        return $this->postRepository->createPost([
+            'title' => $title,
+            'content' => $content,
+            'user_id' => Auth::user()->id
+        ]);
+    }
+}

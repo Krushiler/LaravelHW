@@ -2,40 +2,32 @@
 
 namespace App\Repository;
 
+use App\Models\Note;
 use App\Repository\Interface\NoteRepository;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class RealNoteRepository implements NoteRepository {
     public function createNote(String $name, String $note) {
-        $data = [
+        if (!Auth::check()) {
+            throw new \App\Exceptions\UnauthorizedException();
+        }
+        $user = Auth::user();
+
+        $note = Note::create([
+            'user_id' => $user->id,
             'name' => $name,
             'note' => $note
-        ];
-
-        if (Storage::exists('json')) {
-            Storage::makeDirectory('json');
-        }
-
-        $jsonData = json_encode($data);
-
-        $jsonName = uniqid('json_', true);
-
-        file_put_contents('json/' . $jsonName . '.json', $jsonData);
+        ]);
     }
 
-    public function getAllNotes() {
-        $files = scandir('json');
-        $notes = [];
-        foreach ($files as $file) {
-            if ($file !== '.' && $file !== '..') {
-                $jsonData = file_get_contents('json/' . $file);
-                $note = json_decode($jsonData, true);
-                
-                if ($note !== null) {
-                    $notes[] = $note;
-                }
-            }
+    public function getAllNotes(): array {
+        if (!Auth::check()) {
+            throw new \App\Exceptions\UnauthorizedException();
         }
+        $user = Auth::user();
+
+        $notes = $user->notes()->get()->toArray();
         return $notes;
     }
 }

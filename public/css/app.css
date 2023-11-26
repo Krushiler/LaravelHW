@@ -3,6 +3,11 @@ header {
     color: #fff;
     padding: 10px;
   }
+
+nav {
+    display: flex;
+    justify-content: space-between;
+}
   
 nav ul {
     list-style: none;
@@ -15,7 +20,7 @@ nav ul li {
     margin-right: 10px;
 }
 
-nav ul li a {
+nav ul li a, nav a {
     color: #fff;
     text-decoration: none;
 }
@@ -75,4 +80,41 @@ ul.notes-list li:hover h2 {
 
 ul.notes-list li:hover p {
     color: #333;
+}
+
+/* Оформление формы */
+form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+form input,
+form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+form button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+}
+
+form h2 {
+    text-align: center;
+    color: #333;
+}
+
+.error {
+    color: red;
+}
+
+.divider {
+    height: 1px;
+    background-color: #ccc;
+    margin: 20px 0;
 }
