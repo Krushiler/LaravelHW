@@ -12,9 +12,5 @@
     <main>
         @yield('content')
     </main>
-
-    <footer>
-        @include('base.footer')
-    </footer>
 </body>
 </html>

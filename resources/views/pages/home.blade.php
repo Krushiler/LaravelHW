@@ -5,13 +5,22 @@
 @endsection
 
 @section('content')
-    <h2>Добро пожаловать на главную страницу!</h2>
-    <p>Это контент главной страницы.</p>
     <form action="/save-note" method="POST">
         @csrf
+        <h2>Заметка</h2>
         <label for="name">Имя заметки:</label>
         <input type="text" name="name">
         <label for="note">Текст заметки:</label>
+        <input type="text" name="note">
+        <input type="submit">
+    </form>
+    <div class="divider"></div>
+    <form style="margin-top: 16px" action="/create-post" method="POST">
+        @csrf
+        <h2>Пост</h2>
+        <label for="name">Название:</label>
+        <input type="text" name="name">
+        <label for="note">Контент:</label>
         <input type="text" name="note">
         <input type="submit">
     </form>
