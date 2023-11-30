@@ -9,11 +9,11 @@ use Illuminate\Support\Facades\Auth;
 class RealCommentRepository implements CommentRepository {
 
     public function getComments(int $postId) {
-        return Comment::where('post_id', $postId)->get()->toArray();
+        return Comment::where('post_id', $postId)->orderBy('created_at', 'desc')->get();
     }
 
     public function createComment($data) {
-        return Comment::create($data)->toArray();
+        return Comment::create($data);
     }
 
     public function deleteComment(int $id) {

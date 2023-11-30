@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 
 class Comment extends Model
 {
@@ -23,5 +24,9 @@ class Comment extends Model
 
     public function post() {
         return $this->belongsTo(Post::class);
+    }
+
+    public function canDelete() {
+        return $this->user->id === Auth::user()->id || $this->post->user->id === Auth::user()->id;
     }
 }

@@ -21,13 +21,13 @@ class RealNoteRepository implements NoteRepository {
         ]);
     }
 
-    public function getAllNotes(): array {
+    public function getAllNotes() {
         if (!Auth::check()) {
             throw new \App\Exceptions\UnauthorizedException();
         }
         $user = Auth::user();
 
-        $notes = $user->notes()->get()->toArray();
+        $notes = $user->notes()->get();
         return $notes;
     }
 }

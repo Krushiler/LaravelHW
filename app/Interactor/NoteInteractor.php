@@ -16,7 +16,7 @@ class NoteInteractor {
         return $this->noteRepository->createNote($name, $note); 
     }
 
-    public function getAllNotes(): array {
+    public function getAllNotes() {
         return $this->noteRepository->getAllNotes();
     }
 }

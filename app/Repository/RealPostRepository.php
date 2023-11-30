@@ -8,18 +8,18 @@ use App\Repository\Interface\PostRepository;
 class RealPostRepository implements PostRepository {
     public function getPosts(?int $userId) {
         if ($userId) {
-            return Post::where('user_id', $userId)->get()->toArray();
+            return Post::where('user_id', $userId)->orderBy('created_at', 'desc')->get();
         } else {
-            return Post::all()->toArray();
+            return Post::all()->sortByDesc('created_at');
         }
     }
 
     public function getPostById(int $id) {
-        return Post::find($id)->toArray();
+        return Post::where('id', $id)->orderBy('created_at', 'desc')->first();
     }
 
     public function createPost(array $data) {
-        return Post::create($data)->toArray();
+        return Post::create($data);
     }
 
     public function updatePost(int $id, array $data) {

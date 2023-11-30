@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Interactor;
+
 use App\Repository\Interface\CommentRepository;
 use Illuminate\Support\Facades\Auth;
 

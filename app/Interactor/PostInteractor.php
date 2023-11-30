@@ -12,12 +12,16 @@ class PostInteractor {
         $this->postRepository = $postRepository;
     }
 
-    public function getAllPost() {
+    public function getAllPosts() {
         return $this->postRepository->getPosts(null);
     }
 
     public function getMyPosts() {
         return $this->postRepository->getPosts(Auth::user()->id);
+    }
+
+    public function getPostById(int $id) {
+        return $this->postRepository->getPostById($id);
     }
 
     public function createPost(string $title, string $content) {
