@@ -12,8 +12,8 @@
         <ul class="notes-list">
         @foreach ($notes as $note)
             <li>
-                <h2>{{ $note['name'] }}</h2>
-                <p>{{ $note['note'] }}</p>
+                <h2>{{ $note->name }}</h2>
+                <p>{{ $note->note }}</p>
             </li>
         @endforeach
         </ul>

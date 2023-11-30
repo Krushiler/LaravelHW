@@ -45,26 +45,26 @@ p {
     line-height: 1.5;
 }
 
-ul.notes-list {
+ul.notes-list, ul.posts-list  {
     list-style-type: none;
     padding: 0;
 }
 
-ul.notes-list li {
+ul.notes-list li, ul.posts-list li {
     margin-bottom: 10px;
     padding: 10px;
     background-color: #f8f8f8;
     border: 1px solid #ccc;
 }
 
-ul.notes-list li h2 {
+ul.notes-list li h2, ul.posts-list li h2 {
     color: #333;
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 5px;
 }
 
-ul.notes-list li p {
+ul.notes-list li p, ul.posts-list li p {
     color: #666;
     font-size: 16px;
     line-height: 1.5;
@@ -117,4 +117,53 @@ form h2 {
     height: 1px;
     background-color: #ccc;
     margin: 20px 0;
+}
+
+.add-comment-section {
+    margin-bottom: 20px;
+}
+
+.comment-input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.btn {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.comments-section {
+    margin-top: 20px;
+}
+
+.comment {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-author {
+    font-style: italic;
+    color: #555;
+}
+
+.no-comments {
+    color: #888;
+}
+
+.delete-form {
+    margin-top: 10px;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: #fff;
 }

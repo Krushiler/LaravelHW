@@ -18,10 +18,10 @@
     <form style="margin-top: 16px" action="/create-post" method="POST">
         @csrf
         <h2>Пост</h2>
-        <label for="name">Название:</label>
-        <input type="text" name="name">
-        <label for="note">Контент:</label>
-        <input type="text" name="note">
+        <label for="title">Название:</label>
+        <input type="text" name="title">
+        <label for="content">Контент:</label>
+        <input type="text" name="content">
         <input type="submit">
     </form>
 @endsection
