@@ -3,6 +3,7 @@
 namespace App\Interactor;
 
 use App\Repository\Interface\PostRepository;
+use DateTime;
 use Illuminate\Support\Facades\Auth;
 
 class PostInteractor {
@@ -24,11 +25,11 @@ class PostInteractor {
         return $this->postRepository->getPostById($id);
     }
 
-    public function createPost(string $title, string $content) {
+    public function createPost(string $title, string $content, ?DateTime $scheduledAt = null) {
         return $this->postRepository->createPost([
             'title' => $title,
             'content' => $content,
             'user_id' => Auth::user()->id
-        ]);
+        ], $scheduledAt);
     }
 }

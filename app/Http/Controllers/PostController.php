@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Interactor\PostInteractor;
 use App\Interactor\CommentInteractor;
+use Carbon\Carbon;
+use DateTime;
 
 class PostController {
     private $postInteractor;
@@ -18,13 +20,21 @@ class PostController {
     public function createPost(Request $request) {
         $request->validate([
             'title' => 'required',
-            'content' => 'required'
+            'content' => 'required',
+            'scheduled_at' => 'nullable|date'
         ]);
 
         $title = $request->input('title');
         $content = $request->input('content');
+        $scheduledAt = $request->input('scheduled_at');
 
-        $post = $this->postInteractor->createPost($title, $content);
+        $scheduledAtDate = null;
+
+        if ($scheduledAt) {
+            $scheduledAtDate = Carbon::parse($scheduledAt);
+        }
+
+        $post = $this->postInteractor->createPost($title, $content, $scheduledAtDate);
 
         return redirect()->route('get-post', ['id' => $post->id]);
     }

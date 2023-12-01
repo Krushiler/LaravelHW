@@ -21,7 +21,9 @@
         <label for="title">Название:</label>
         <input type="text" name="title">
         <label for="content">Контент:</label>
-        <input type="text" name="content">
+        <textarea type="text" name="content"></textarea>
+        <label for="scheduled_at">Запланированная дата и время:</label>
+        <input type="datetime-local" name="scheduled_at">
         <input type="submit">
     </form>
 @endsection
